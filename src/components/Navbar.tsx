@@ -11,6 +11,7 @@ import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {styled} from '@mui/material/styles';
+import {Link} from 'react-router-dom';
 
 interface ComponentProps {
  active: string;
@@ -55,45 +56,51 @@ function Navbar({ active } : ComponentProps) {
                     </Typography>
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <Button 
-                            variant={active === "1" ? "contained" : "text"}  
-                            sx={{
-                                color: active === "1" ? '#fff' : '#e91e63',
-                                backgroundColor: active === "1" ? '#e91e63' : 'transparent',
-                                '&:hover': {
-                                    backgroundColor: '#f06292'
-                                }
-                            }} 
-                            size="medium"
-                        >
-                            Главная
-                        </Button>
-                        <Button 
-                            variant={active === "2" ? "contained" : "text"} 
-                            sx={{
-                                color: active === "2" ? '#fff' : '#e91e63',
-                                backgroundColor: active === "2" ? '#e91e63' : 'transparent',
-                                '&:hover': {
-                                    backgroundColor: '#f06292'
-                                }
-                            }}
-                            size="medium"
-                        >
-                            Список растений
-                        </Button>
-                        <Button 
-                            variant={active === "3" ? "contained" : "text"} 
-                            sx={{
-                                color: active === "3" ? '#fff' : '#e91e63',
-                                backgroundColor: active === "3" ? '#e91e63' : 'transparent',
-                                '&:hover': {
-                                    backgroundColor: '#f06292'
-                                }
-                            }}
-                            size="medium"
-                        >
-                            Контакты
-                        </Button>
+                        <Link to="/">
+                            <Button 
+                                variant={active === "1" ? "contained" : "text"}  
+                                sx={{
+                                    color: active === "1" ? '#fff' : '#e91e63',
+                                    backgroundColor: active === "1" ? '#e91e63' : 'transparent',
+                                    '&:hover': {
+                                        backgroundColor: '#f06292'
+                                    }
+                                }} 
+                                size="medium"
+                            >
+                                Главная
+                            </Button>
+                        </Link>
+                        <Link to="/list">
+                            <Button 
+                                variant={active === "2" ? "contained" : "text"} 
+                                sx={{
+                                    color: active === "2" ? '#fff' : '#e91e63',
+                                    backgroundColor: active === "2" ? '#e91e63' : 'transparent',
+                                    '&:hover': {
+                                        backgroundColor: '#f06292'
+                                    }
+                                }}
+                                size="medium"
+                            >
+                                Список растений
+                            </Button>
+                        </Link>
+                        <Link to="/chart">
+                            <Button 
+                                variant={active === "3" ? "contained" : "text"} 
+                                sx={{
+                                    color: active === "3" ? '#fff' : '#e91e63',
+                                    backgroundColor: active === "3" ? '#e91e63' : 'transparent',
+                                    '&:hover': {
+                                        backgroundColor: '#f06292'
+                                    }
+                                }}
+                                size="medium"
+                            >
+                                Диаграммы
+                            </Button>
+                        </Link>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' }}}>
                         <IconButton aria-label="Menu button" onClick={toggleDrawer(true)} sx={{ color: '#e91e63' }}>
@@ -115,9 +122,15 @@ function Navbar({ active } : ComponentProps) {
                                     <CloseRoundedIcon/>
                                 </IconButton>
                             </Box>
-                                <StyledMenuItem selected={active === "1"}>Главная </StyledMenuItem>
-                                <StyledMenuItem>Список растений</StyledMenuItem>
-                                <StyledMenuItem>Контакты</StyledMenuItem> 
+                                <Link to="/">
+                                    <StyledMenuItem selected={active === "1"}>Главная </StyledMenuItem>
+                                </Link>
+                                <Link to="/list">
+                                    <StyledMenuItem>Список растений</StyledMenuItem>
+                                </Link>
+                                <Link to="/chart"> 
+                                    <StyledMenuItem>Диаграммы</StyledMenuItem> 
+                                </Link>
                             </Box>
                         </Drawer>
                     </Box>
